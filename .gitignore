@@ -1,0 +1,10 @@
+composer.lock
+/config/*
+/public/*
+!/public/.htaccess
+!/public/typo3conf
+/public/typo3conf/*
+!/public/typo3conf/.gitkeep
+/var/*
+!/var/labels
+/vendor
