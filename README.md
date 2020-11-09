@@ -13,7 +13,7 @@ the post-start hooks which are doing the whole magic.
 
 * Install Docker and DDEV Local (and on Windows also Git). On Windows WSL2 is
   highly recommended.
-* Download and extract [this repository](https://github.com/GsTYPO3/ddev-typo3-src/archive/master.zip)
+* Download and extract [this repository](https://github.com/GsTYPO3/introduction/archive/master.zip)
 * Open a shell, head to the installation folder created before and run `ddev start`
 
 A new browser window opens and shows you the login page to TYPO3 Backend.
