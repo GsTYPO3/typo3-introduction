@@ -31,9 +31,7 @@ information about the target inside. This does not hurt the functionality in
 the but container but could be a little bit confusing on the host side if you
 don't know about this behavior.
 
-## Reset the Project
-
-⚠️ CAUTION ⚠️
+## ⚠️ Reset the Project ⚠️
 
 The procedure will delete the database and all created files. Any changes you
 made before will be lost. Be sure you create a proper backup if needed.
