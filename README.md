@@ -31,6 +31,12 @@ information about the target inside. This does not hurt the functionality in
 the but container but could be a little bit confusing on the host side if you
 don't know about this behavior.
 
+## Reset the Project
+
+To reset the project and start from scratch run `ddev delete -Oy`. CAUTION,
+this will delete the database without doing a snapshot before. Afterwards
+run `git clean -fdx` to reset your project files to the default
+
 ## Links
 
 * [Install Docker](https://docs.docker.com/#docker-products)
