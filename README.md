@@ -35,7 +35,6 @@ don't know about this behavior.
 
 * [Install Docker](https://docs.docker.com/#docker-products)
 * [Install DDEV Local](https://ddev.readthedocs.io/en/stable/)
-* [Install TYPO3 Without Composer](https://docs.typo3.org/m/typo3/guide-installation/9.5/en-us/QuickInstall/GetAndUnpack/Index.html)
 
 ## License
 
