@@ -33,9 +33,14 @@ don't know about this behavior.
 
 ## Reset the Project
 
-To reset the project and start from scratch run `ddev delete -Oy`. CAUTION,
-this will delete the database without doing a snapshot before. Afterwards
-run `git clean -fdx` to reset your project files to the default
+⚠️ CAUTION ⚠️
+
+The procedure will delete the database and all created files. Any changes you
+made before will be lost. Be sure you create a proper backup if needed.
+
+To reset the project and start from scratch run `ddev delete -Oy`, this will
+delete the database without doing a snapshot before. Afterwards run
+`git clean -fdx` to reset your project files to the default.
 
 ## Links
 
