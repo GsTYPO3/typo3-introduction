@@ -13,7 +13,8 @@ the post-start hooks which are doing the whole magic.
 
 * Install Docker and DDEV Local (and on Windows also Git). On Windows WSL2 is
   highly recommended.
-* Download and extract [this repository](https://github.com/GsTYPO3/introduction/archive/master.zip)
+* Clone or [download](https://github.com/GsTYPO3/introduction/archive/master.zip)
+  and extract this repository
 * Open a shell, head to the installation folder created before and run `ddev start`
 
 A new browser window opens and shows you the login page to TYPO3 Backend.
@@ -37,8 +38,12 @@ The procedure will delete the database and all created files. Any changes you
 made before will be lost. Be sure you create a proper backup if needed.
 
 To reset the project and start from scratch run `ddev delete -Oy`, this will
-delete the database without doing a snapshot before. Afterwards run
-`git clean -fdx` to reset your project files to the default.
+delete the database without doing a snapshot before.
+
+* If you have cloned the repository run `git clean -fdx` to reset your project
+  files to the default.
+* If you have downloaded the repository just delete the project folder and
+  extract the downloaded archive again.
 
 ## Links
 
