@@ -1,0 +1,44 @@
+#!/bin/bash
+
+## Description: Reset project
+## Usage: reset
+## Example: ddev reset
+
+FORCE=""
+CHOICE=""
+
+while :; do
+    case ${1:-} in
+        -f|--force)
+            FORCE=true
+            ;;
+        --) # End of all options.
+            shift
+            break
+            ;;
+        -?*)
+            printf "WARN: Unknown option (ignored): %s\n" "$1" >&2
+            ;;
+        *)  # Default case: No more options, so break out of the loop.
+            break
+    esac
+
+    shift
+done
+
+if [ ! ${FORCE} ] ; then
+    printf "Warning, this will reset the project and remove all changes. Continue [yes/no]? "
+    read CHOICE
+fi
+
+if [ "${CHOICE}" = "yes" ] || [ ${FORCE} ] ; then
+    rm -rf config
+    rm -rf public
+    rm -rf var
+    rm -rf vendor
+    rm -r composer.lock
+    mkdir -p public/typo3conf
+    touch public/typo3conf/.gitkeep
+    ddev config --create-docroot --project-type typo3
+    ddev delete -Oy
+fi
