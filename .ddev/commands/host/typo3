@@ -1,0 +1,60 @@
+#!/bin/bash
+
+## Description: Change the TYPO3 CMS version
+## Usage: typo3 [version]
+## Example: ddev typo3 9\nddev typo3 10
+
+FORCE=""
+CHOICE=""
+
+while :; do
+    case ${1:-} in
+        -f|--force)
+            FORCE=true
+            ;;
+        --) # End of all options.
+            shift
+            break
+            ;;
+        -?*)
+            printf "WARN: Unknown option (ignored): %s\n" "$1" >&2
+            ;;
+        *)  # Default case: No more options, so break out of the loop.
+            break
+    esac
+
+    shift
+done
+
+if [ ! ${FORCE} ] ; then
+    printf "Warning, this will reset the project and remove all changes. Continue [yes/no]? "
+    read CHOICE
+fi
+
+if [ "${CHOICE}" = "yes" ] || [ ${FORCE} ] ; then
+    case ${1:-} in
+        9|9.5)
+            COMPOSER_VERSION="1"
+            MARIADB_VERSION="10.4"
+            PHP_VERSION="7.4"
+            TYPO3_VERSION="~9.5.0"
+            INTRODUCTION_VERSION="^4.0.1"
+            ;;
+        10|10.4)
+            COMPOSER_VERSION="2"
+            MARIADB_VERSION="10.4"
+            PHP_VERSION="7.4"
+            TYPO3_VERSION="~10.4.0"
+            INTRODUCTION_VERSION="^4.2"
+            ;;
+        *)
+            echo "Unknown TYPO3 CMS version provided, valid values are 10.4 or 9.5."
+            echo ""
+            exit 1
+    esac
+
+    ddev config --composer-version ${COMPOSER_VERSION} --mariadb-version ${MARIADB_VERSION} --php-version ${PHP_VERSION} --project-type typo3
+    ddev composer require typo3/minimal:"${TYPO3_VERSION}" typo3/cms-introduction:"${INTRODUCTION_VERSION}" --no-update
+    ddev reset --force
+    ddev start
+fi

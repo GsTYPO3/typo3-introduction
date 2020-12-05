@@ -9,7 +9,7 @@ The installation steps are done on `ddev start` if TYPO3 is not already setup.
 Have a look at the [DDEV Local configuration](.ddev/config.yaml), especially
 the post-start hooks which are doing the whole magic.
 
-## How to use
+## Quick Start
 
 * Install Docker and DDEV Local (and on Windows also Git). On Windows WSL2 is
   highly recommended.
@@ -32,18 +32,31 @@ information about the target inside. This does not hurt the functionality in
 the but container but could be a little bit confusing on the host side if you
 don't know about this behavior.
 
-## ⚠️ Reset the Project ⚠️
+## How to use
+
+### Useful Commands
+
+* Start project: `ddev start`
+* Stop project: `ddev stop`
+* Open frontend: `ddev launch`
+* Open backend `ddev launch typo3`
+
+### ⚠️ Change TYPO3 CMS Version ⚠️
 
 The procedure will delete the database and all created files. Any changes you
 made before will be lost. Be sure you create a proper backup if needed.
 
-To reset the project and start from scratch run `ddev delete -Oy`, this will
-delete the database without doing a snapshot before.
+To change the TYPO3 CMS version run `ddev typo3 [version]`. Valid version are
+10.4 or 9.5 or just their major version part.
 
-* If you have cloned the repository run `git clean -fdx` to reset your project
-  files to the default.
-* If you have downloaded the repository just delete the project folder and
-  extract the downloaded archive again.
+E.g. to run the Introduction with TYPO3 CMS 9.5 run `ddev typo3 9`.
+
+### ⚠️ Reset the Project ⚠️
+
+The procedure will delete the database and all created files. Any changes you
+made before will be lost. Be sure you create a proper backup if needed.
+
+To reset the project and start from scratch run `ddev reset`.
 
 ## Links
 
