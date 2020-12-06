@@ -49,7 +49,7 @@ made before will be lost. Be sure you create a proper backup if needed.
 To change the TYPO3 CMS version run `ddev typo3 [version]`. Valid version are
 10.4 or 9.5 or just their major version part.
 
-E.g. to run the Introduction with TYPO3 CMS 9.5 run `ddev typo3 9`.
+E.g. to use the Introduction with TYPO3 CMS 9.5 run `ddev typo3 9`.
 
 ### Reset the Project ⚠️
 
