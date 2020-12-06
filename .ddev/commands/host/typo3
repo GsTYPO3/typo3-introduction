@@ -39,6 +39,8 @@ if [ "${CHOICE}" = "yes" ] || [ ${FORCE} ] ; then
             PHP_VERSION="7.4"
             TYPO3_VERSION="~9.5.0"
             INTRODUCTION_VERSION="^4.0.1"
+
+            ddev composer remove typo3/cms-dashboard --no-update
             ;;
         10|10.4)
             COMPOSER_VERSION="2"
@@ -46,6 +48,8 @@ if [ "${CHOICE}" = "yes" ] || [ ${FORCE} ] ; then
             PHP_VERSION="7.4"
             TYPO3_VERSION="~10.4.0"
             INTRODUCTION_VERSION="^4.2"
+
+            ddev composer require typo3/cms-dashboard:"*" --no-update
             ;;
         *)
             echo "Unknown TYPO3 CMS version provided, valid values are 10.4 or 9.5."
