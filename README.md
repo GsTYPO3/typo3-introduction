@@ -11,8 +11,8 @@ the post-start hooks which are doing the whole magic.
 
 ## Quick Start
 
-* Install Docker and DDEV Local (and on Windows also Git). On Windows WSL2 is
-  highly recommended.
+* Install [Docker](https://docs.docker.com/#docker-products) and [DDEV Local](https://ddev.readthedocs.io/en/stable/)
+  (and on Windows also Git). On Windows WSL2 is highly recommended.
 * Clone or [download](https://github.com/GsTYPO3/introduction/archive/master.zip)
   and extract this repository
 * Open a shell, head to the installation folder created before and run `ddev start`
@@ -58,10 +58,58 @@ made before will be lost. Be sure you create a proper backup if needed.
 
 To reset the project and start from scratch run `ddev reset`.
 
-## Links
+## The Magic behind
 
-* [Install Docker](https://docs.docker.com/#docker-products)
-* [Install DDEV Local](https://ddev.readthedocs.io/en/stable/)
+To simplify the usage of this demo there is a lot of magic implemented which I
+try to explain here.
+
+Something still not clear? Please [open an issue](https://github.com/GsTYPO3/introduction/issues/new/choose)
+and I will try to explain it.
+
+### Automatic Setup
+
+Kudos here go to the [TYPO-Console](https://github.com/TYPO3-Console) and its
+other packages [composer-auto-commands](https://github.com/TYPO3-Console/composer-auto-commands#readme)
+and [composer-typo3-auto-install](https://github.com/TYPO3-Console/composer-typo3-auto-install#readme)
+which make this possible at all.
+
+`composer-auto-commands` makes the usage of scripts in the `composer.json` known
+from the [TYPO3 CMS Base Distribution](https://github.com/TYPO3/TYPO3.CMS.BaseDistribution/blob/10.x/composer.json#L39-L47)
+superfluous. In this case the package takes care to run to following commands:
+
+* install:generatepackagestates
+* install:fixfolderstructure
+* database:updateschema
+* cache:flush
+* extension:setupactive
+
+`composer-typo3-auto-install` additionally takes care about the initial setup if
+it's not already done, means no LocalConfiguration.php can be found.
+
+Important default values are set with the help of the environment variables set
+in the [.env](.env). The admin name and password are currently commented which
+leads to the user gets queried during the setup for this values. Also have a look
+at the [TYPO3-Console Documentation](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/InstallSetup.html)
+to get an idea of the supported variables.
+
+The `.env` file finally is loaded by the help of Helhum's [dotenv-connector](https://github.com/helhum/dotenv-connector#readme)
+during the Composer run.
+
+Get more information with the links above and in the [TYPO3-Console Command Reference](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/Index.html).
+
+### DDEV's Custom Commands
+
+DDEV Local has the great possibility to create [custom commands](https://ddev.readthedocs.io/en/stable/users/extend/custom-commands/).
+The features to change the TYPO3 Core version and reset the project are implemented
+with the help of the custom commands [typo3](.ddev/commands/host/typo3) and
+[reset](.ddev/commands/host/reset) which are simple bash scripts.
+
+### DDEV's Configuration
+
+Every DDEV Local user knows the [project configuration](.ddev/config.yaml). In
+addition a [docker-composer.*.yaml](.ddev/docker-compose.environment.yaml) file is
+provided to add the environment variable `TYPO3_CONTEXT`. Read more about this
+feature in the [DDEV Documentation](https://ddev.readthedocs.io/en/stable/users/extend/custom-compose-files/).
 
 ## License
 
