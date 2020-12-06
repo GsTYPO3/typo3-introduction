@@ -77,22 +77,21 @@ which make this possible at all.
 from the [TYPO3 CMS Base Distribution](https://github.com/TYPO3/TYPO3.CMS.BaseDistribution/blob/10.x/composer.json#L39-L47)
 superfluous. In this case the package takes care to run to following commands:
 
-* install:generatepackagestates
-* install:fixfolderstructure
-* database:updateschema
-* cache:flush
-* extension:setupactive
+* [install:generatepackagestates](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/InstallGeneratepackagestates.html)
+* [install:fixfolderstructure](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/InstallFixfolderstructure.html)
+* [database:updateschema](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/DatabaseUpdateschema.html)
+* [cache:flush](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/CacheFlush.html)
+* [extension:setupactive](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/ExtensionSetupactive.html)
 
 `composer-typo3-auto-install` additionally takes care about the initial setup if
-it's not already done, means no LocalConfiguration.php can be found.
-
-Important default values are set with the help of the environment variables set
-in the [.env](.env). The admin name and password are currently commented which
-leads to the user gets queried during the setup for this values. Also have a look
-at the [TYPO3-Console Documentation](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/InstallSetup.html)
+it's not already done, means no LocalConfiguration.php can be found. Important
+default values are set with the help of the environment variables set in the
+[.env](.env). The admin name and password are currently commented which leads to
+the user gets queried during the setup for this values. Also have a look at the
+[TYPO3-Console Documentation](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/InstallSetup.html)
 to get an idea of the supported variables.
 
-The `.env` file finally is loaded by the help of Helhum's [dotenv-connector](https://github.com/helhum/dotenv-connector#readme)
+The `.env` file finally is loaded by the help of [Helhum's dotenv-connector](https://github.com/helhum/dotenv-connector#readme)
 during the Composer run.
 
 Get more information with the links above and in the [TYPO3-Console Command Reference](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/Index.html).
