@@ -32,6 +32,10 @@ information about the target inside. This does not hurt the functionality in
 the but container but could be a little bit confusing on the host side if you
 don't know about this behavior.
 
+I'm currently working on a patch for DDEV here to simplify this behavior on
+Windows. In one of the next releases this will work out-of-the-box without
+changing to Developer Mode or using an elevated shell!
+
 ## How to use
 
 ### Useful Commands
