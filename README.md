@@ -45,22 +45,22 @@ changing to Developer Mode or using an elevated shell!
 * Open frontend: `ddev launch`
 * Open backend `ddev launch typo3`
 
-### Change TYPO3 CMS Version ⚠️
-
-⚠️ The procedure will delete the database and all created files. Any changes you
-made before will be lost. Be sure you create a proper backup if needed.
-
-To change the TYPO3 CMS version run `ddev typo3 [version]`. Valid version are
-10.4 or 9.5 or just their major version part.
-
-E.g. to use the Introduction with TYPO3 CMS 9.5 run `ddev typo3 9`.
-
-### Reset the Project ⚠️
+### Reset the Project
 
 ⚠️ The procedure will delete the database and all created files. Any changes you
 made before will be lost. Be sure you create a proper backup if needed.
 
 To reset the project and start from scratch run `ddev reset`.
+
+### Change TYPO3 CMS Version
+
+⚠️ The procedure will delete the database and all created files. Any changes you
+made before will be lost. Be sure you create a proper backup if needed.
+
+To change the TYPO3 CMS version run `ddev reset [version]`. Valid version are
+10.4 or 9.5 or just their major version part.
+
+E.g. to use the Introduction with TYPO3 CMS 9.5 run `ddev reset 9`.
 
 ## The Magic behind
 
@@ -104,8 +104,8 @@ Get more information with the links above and in the [TYPO3-Console Command Refe
 
 DDEV Local has the great possibility to create [custom commands](https://ddev.readthedocs.io/en/stable/users/extend/custom-commands/).
 The features to change the TYPO3 Core version and reset the project are implemented
-with the help of the custom commands [typo3](.ddev/commands/host/typo3) and
-[reset](.ddev/commands/host/reset) which are simple bash scripts.
+with the help of the custom command [reset](.ddev/commands/host/reset) which is
+simple bash script.
 
 ### DDEV's Configuration
 
