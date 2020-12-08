@@ -1,12 +1,52 @@
 #!/bin/bash
 
-## Description: Reset project
-## Usage: reset
-## Example: ddev reset
+## Description: Reset the project or change the TYPO3 CMS version
+## Usage: reset [flags] [args]
+## Example: ddev reset\nddev reset 10\nddev reset 9
+## Flags: [{"Name":"force","Shorthand":"f","Usage":"Do not ask any interactive question"}]
 
+# Initialize local variables
 FORCE=""
+RECONFIGURE=""
 CHOICE=""
 
+# Set default versions
+COMPOSER_VERSION="2"
+MARIADB_VERSION="10.4"
+PHP_VERSION="7.4"
+TYPO3_VERSION="~10.4.0"
+DASHBOARD_VERSION="*"
+INTRODUCTION_VERSION="^4.2"
+
+
+# Functions
+reset_project () {
+    rm -rf config
+    rm -rf public
+    rm -rf var
+    rm -rf vendor
+    rm -r composer.lock
+    mkdir -p public/typo3conf
+    touch public/typo3conf/.gitkeep
+    ddev config --create-docroot --project-type typo3
+    ddev delete -Oy
+}
+
+reconfigure_project () {
+    if [ -z "${DASHBOARD_VERSION}" ] ; then
+        ddev composer remove typo3/cms-dashboard --no-update
+    else
+        ddev composer require typo3/cms-dashboard:"${DASHBOARD_VERSION}" --no-update
+    fi
+
+    ddev config --composer-version ${COMPOSER_VERSION} --mariadb-version ${MARIADB_VERSION} --php-version ${PHP_VERSION} --project-type typo3
+    ddev composer require typo3/minimal:"${TYPO3_VERSION}" typo3/cms-introduction:"${INTRODUCTION_VERSION}" --no-update
+    reset_project
+    ddev start
+}
+
+
+# Parse options and arguments
 while :; do
     case ${1:-} in
         -f|--force)
@@ -19,26 +59,46 @@ while :; do
         -?*)
             printf "WARN: Unknown option (ignored): %s\n" "$1" >&2
             ;;
-        *)  # Default case: No more options, so break out of the loop.
-            break
+        *)  # Default case: version argument or end of arguments.
+            if [ -z ${1} ] ; then
+                break
+            fi
+
+            case ${1:-} in
+                9|9.5)
+                    COMPOSER_VERSION="1"
+                    MARIADB_VERSION="10.4"
+                    PHP_VERSION="7.4"
+                    TYPO3_VERSION="~9.5.0"
+                    DASHBOARD_VERSION=""
+                    INTRODUCTION_VERSION="^4.0.1"
+
+                    RECONFIGURE=true
+                    ;;
+                10|10.4)
+                    RECONFIGURE=true
+                    ;;
+                *)
+                    printf "ERROR: Unknown version argument: %s\nValid TYPO3 CMS versions are 10.4 or 9.5.\n" "$1" >&2
+                    exit 1
+                    ;;
+            esac
+            ;;
     esac
 
     shift
 done
 
-if [ ! ${FORCE} ] ; then
+# Set user confirmation if force option not set
+if [ ! "${FORCE}" = "true" ] ; then
     printf "Warning, this will reset the project and remove all changes. Continue [yes/no]? "
     read CHOICE
 fi
 
-if [ "${CHOICE}" = "yes" ] || [ ${FORCE} ] ; then
-    rm -rf config
-    rm -rf public
-    rm -rf var
-    rm -rf vendor
-    rm -r composer.lock
-    mkdir -p public/typo3conf
-    touch public/typo3conf/.gitkeep
-    ddev config --create-docroot --project-type typo3
-    ddev delete -Oy
+if [ "${CHOICE}" = "yes" ] || [ "${FORCE}" = "true" ] ; then
+    if [ ! ${RECONFIGURE} ] ; then
+        reset_project
+    else
+        reconfigure_project
+    fi
 fi

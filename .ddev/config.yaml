@@ -1,4 +1,3 @@
-name: typo3-introduction
 type: typo3
 docroot: public
 php_version: "7.4"
@@ -16,7 +15,6 @@ hooks:
   - composer: install
   - exec-host: ddev launch typo3
 use_dns_when_possible: true
-timezone: Europe/Berlin
 composer_version: "2"
 
 
