@@ -2,7 +2,7 @@
 
 Get going quickly with TYPO3 CMS Introduction Package and DDEV Local.
 
-This repository provides a fully setup and ready to use TYPO3 CMS instance
+This repository provides a full setup and ready to use TYPO3 CMS instance
 based on the TYPO3 CMS Introduction Package and using DDEV Local.
 
 The installation steps are done on `ddev start` if TYPO3 is not already setup.
@@ -12,12 +12,12 @@ the post-start hooks which are doing the whole magic.
 ## Quick Start
 
 * Install [Docker](https://docs.docker.com/#docker-products) and [DDEV Local](https://ddev.readthedocs.io/en/stable/)
-  (and on Windows also Git). On Windows WSL2 is highly recommended.
+  (and on Windows also Git). On Windows, WSL2 is highly recommended.
 * Clone or [download](https://github.com/GsTYPO3/introduction/archive/master.zip)
   and extract this repository
 * Open a shell, head to the installation folder created before and run `ddev start`
 
-A new browser window opens and shows you the login page to TYPO3 Backend.
+A new browser window opens and displays the login page to the TYPO3 Backend.
 
 Enjoy!
 
@@ -29,8 +29,8 @@ Developer Mode or start your shell (Git Bash, cmd, PowerShell etc.) elevated
 
 Otherwise the linked folders and files are shown as normal files with some text
 information about the target inside. This does not hurt the functionality in
-the but container but could be a little bit confusing on the host side if you
-don't know about this behavior.
+the container, but could be a little bit confusing on the host if you don't know 
+about this behavior.
 
 I'm currently working on a patch for DDEV here to simplify this behavior on
 Windows. In one of the next releases this will work out-of-the-box without
@@ -47,39 +47,38 @@ changing to Developer Mode or using an elevated shell!
 
 ### Reset the Project
 
-⚠️ The procedure will delete the database and all created files. Any changes you
-made before will be lost. Be sure you create a proper backup if needed.
+⚠️ This procedure will delete the database and all files created. Any changes you
+made before will be lost. Be sure to create a proper backup if needed.
 
-To reset the project and start from scratch run `ddev reset`.
+To reset the project and start from scratch, run `ddev reset`.
 
 ### Change TYPO3 CMS Version
 
-⚠️ The procedure will delete the database and all created files. Any changes you
-made before will be lost. Be sure you create a proper backup if needed.
+⚠️ This procedure will delete the database and all files created. Any changes you
+made before will be lost. Be sure to create a proper backup if needed.
 
-To change the TYPO3 CMS version run `ddev reset [version]`. Valid version are
+To change the TYPO3 CMS version run `ddev reset [version]`. Valid versions are
 10.4 or 9.5 or just their major version part.
 
-E.g. to use the Introduction with TYPO3 CMS 9.5 run `ddev reset 9`.
+E.g., to use the Introduction Package with TYPO3 CMS 9.5 run `ddev reset 9`.
 
-## The Magic behind
+## The Magic Behind the Scenes 
 
 To simplify the usage of this demo there is a lot of magic implemented which I
 try to explain here.
 
-Something still not clear? Please [open an issue](https://github.com/GsTYPO3/introduction/issues/new/choose)
+If something remains unclear, [open an issue](https://github.com/GsTYPO3/introduction/issues/new/choose)
 and I will try to explain it.
 
 ### Automatic Setup
 
-Kudos here go to the [TYPO-Console](https://github.com/TYPO3-Console) and its
+Kudos go to the [TYPO3-Console](https://github.com/TYPO3-Console) and its
 other packages [composer-auto-commands](https://github.com/TYPO3-Console/composer-auto-commands#readme)
-and [composer-typo3-auto-install](https://github.com/TYPO3-Console/composer-typo3-auto-install#readme)
-which make this possible at all.
+and [composer-typo3-auto-install](https://github.com/TYPO3-Console/composer-typo3-auto-install#readme).
 
 `composer-auto-commands` makes the usage of scripts in the `composer.json` known
 from the [TYPO3 CMS Base Distribution](https://github.com/TYPO3/TYPO3.CMS.BaseDistribution/blob/10.x/composer.json#L39-L47)
-superfluous. In this case the package takes care to run to following commands:
+superfluous. In this case the package takes care to run the following commands:
 
 * [install:generatepackagestates](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/InstallGeneratepackagestates.html)
 * [install:fixfolderstructure](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/InstallFixfolderstructure.html)
@@ -87,31 +86,28 @@ superfluous. In this case the package takes care to run to following commands:
 * [cache:flush](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/CacheFlush.html)
 * [extension:setupactive](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/ExtensionSetupactive.html)
 
-`composer-typo3-auto-install` additionally takes care about the initial setup if
+`composer-typo3-auto-install` additionally takes care of the initial setup if
 it's not already done, means no LocalConfiguration.php can be found. Important
-default values are set with the help of the environment variables set in the
-[.env](.env). The admin name and password are currently commented which leads to
-the user gets queried during the setup for this values. Also have a look at the
-[TYPO3-Console Documentation](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/InstallSetup.html)
-to get an idea of the supported variables.
+default values are set with the help of the environment variables set in [.env](.env).
+The admin name and password are currently commented out, the required user information
+is collected via various prompts. Have a look at the [TYPO3-Console Documentation](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/InstallSetup.html)
+for supported variables.
 
-The `.env` file finally is loaded by the help of [Helhum's dotenv-connector](https://github.com/helhum/dotenv-connector#readme)
-during the Composer run.
+Finally, the `.env` file is loaded via the help of [Helhum's dotenv-connector](https://github.com/helhum/dotenv-connector#readme).
 
-Get more information with the links above and in the [TYPO3-Console Command Reference](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/Index.html).
+More information is available with the links above and in the [TYPO3-Console Command Reference](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/Index.html).
 
 ### DDEV's Custom Commands
 
 DDEV Local has the great possibility to create [custom commands](https://ddev.readthedocs.io/en/stable/users/extend/custom-commands/).
 The features to change the TYPO3 Core version and reset the project are implemented
-with the help of the custom command [reset](.ddev/commands/host/reset) which is
+with the help of the custom command [reset](.ddev/commands/host/reset) which is a
 simple bash script.
 
 ### DDEV's Configuration
 
-Every DDEV Local user knows the [project configuration](.ddev/config.yaml). In
-addition a [docker-composer.*.yaml](.ddev/docker-compose.environment.yaml) file is
-provided to add the environment variable `TYPO3_CONTEXT`. Read more about this
+Additionally to the [project configuration](.ddev/config.yaml) a [docker-composer.\*.yaml](.ddev/docker-compose.environment.yaml) 
+file is provided to add the environment variable `TYPO3_CONTEXT`. Read more about this
 feature in the [DDEV Documentation](https://ddev.readthedocs.io/en/stable/users/extend/custom-compose-files/).
 
 ## License
