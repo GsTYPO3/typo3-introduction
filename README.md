@@ -2,7 +2,7 @@
 
 Get going quickly with TYPO3 CMS Introduction Package and DDEV Local.
 
-This repository provides a full setup and ready to use TYPO3 CMS instance
+This repository provides a fully set up and ready to use TYPO3 CMS instance
 based on the TYPO3 CMS Introduction Package and using DDEV Local.
 
 The installation steps are done on `ddev start` if TYPO3 is not already setup.
