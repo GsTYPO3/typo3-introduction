@@ -86,9 +86,9 @@ superfluous. In this case the package takes care to run the following commands:
 * [cache:flush](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/CacheFlush.html)
 * [extension:setupactive](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/ExtensionSetupactive.html)
 
-`composer-typo3-auto-install` additionally takes care of the initial setup if
-it's not already done, means no LocalConfiguration.php can be found. Important
-default values are set with the help of the environment variables set in [.env](.env).
+`composer-typo3-auto-install` additionally takes care of the initial setup in case no 
+LocalConfiguration.php can be found. Important default values are set with the help of
+the environment variables set in [.env](.env).
 The admin name and password are currently commented out, the required user information
 is collected via various prompts. Have a look at the [TYPO3-Console Documentation](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/InstallSetup.html)
 for supported variables.
