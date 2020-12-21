@@ -11,10 +11,11 @@ the post-start hooks which are doing the whole magic.
 
 ## Quick Start
 
-* Install [Docker](https://docs.docker.com/#docker-products) and [DDEV Local](https://ddev.readthedocs.io/en/stable/)
+* Install (and start) [Docker](https://docs.docker.com/#docker-products) and [DDEV Local](https://ddev.readthedocs.io/en/stable/)
   (and on Windows also Git). On Windows, WSL2 is highly recommended.
 * Clone or [download](https://github.com/GsTYPO3/introduction/archive/master.zip)
   and extract this repository
+* Make sure ports 80 and 3306 are free! ([Port fixing](https://ddev.readthedocs.io/en/stable/users/troubleshooting/#unable-listen))
 * Open a shell, head to the installation folder created before and run `ddev start`
 
 A new browser window opens and displays the login page to the TYPO3 Backend.
