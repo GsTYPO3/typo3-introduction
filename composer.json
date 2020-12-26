@@ -21,6 +21,7 @@
 		"typo3/cms-about": "*",
 		"typo3/cms-belog": "*",
 		"typo3/cms-beuser": "*",
+		"typo3/cms-core": "~10.4.0",
 		"typo3/cms-dashboard": "*",
 		"typo3/cms-filelist": "*",
 		"typo3/cms-info": "*",
@@ -34,7 +35,7 @@
 		"typo3/cms-t3editor": "*",
 		"typo3/cms-tstemplate": "*",
 		"typo3/cms-viewpage": "*",
-		"typo3/minimal": "~10.4.0"
+		"typo3/minimal": "*"
 	},
 	"require-dev": {
 		"symfony/thanks": "^1.2",
