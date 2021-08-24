@@ -30,7 +30,7 @@ Developer Mode or start your shell (Git Bash, cmd, PowerShell etc.) elevated
 
 Otherwise the linked folders and files are shown as normal files with some text
 information about the target inside. This does not hurt the functionality in
-the container, but could be a little bit confusing on the host if you don't know 
+the container, but could be a little bit confusing on the host if you don't know
 about this behavior.
 
 I'm currently working on a patch for DDEV here to simplify this behavior on
@@ -59,11 +59,11 @@ To reset the project and start from scratch, run `ddev reset`.
 made before will be lost. Be sure to create a proper backup if needed.
 
 To change the TYPO3 CMS version run `ddev reset [version]`. Valid versions are
-10.4 or 9.5 or just their major version part.
+10.4, 9.5 and 8.7 or just their major version part.
 
 E.g., to use the Introduction Package with TYPO3 CMS 9.5 run `ddev reset 9`.
 
-## The Magic Behind the Scenes 
+## The Magic Behind the Scenes
 
 To simplify the usage of this demo there is a lot of magic implemented which I
 try to explain here.
@@ -87,7 +87,7 @@ superfluous. In this case the package takes care to run the following commands:
 * [cache:flush](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/CacheFlush.html)
 * [extension:setupactive](https://docs.typo3.org/p/helhum/typo3-console/master/en-us/CommandReference/ExtensionSetupactive.html)
 
-`composer-typo3-auto-install` additionally takes care of the initial setup in case no 
+`composer-typo3-auto-install` additionally takes care of the initial setup in case no
 LocalConfiguration.php can be found. Important default values are set with the help of
 the environment variables set in [.env](.env).
 The admin name and password are currently commented out, the required user information
@@ -107,7 +107,7 @@ simple bash script.
 
 ### DDEV's Configuration
 
-Additionally to the [project configuration](.ddev/config.yaml) a [docker-composer.\*.yaml](.ddev/docker-compose.environment.yaml) 
+Additionally to the [project configuration](.ddev/config.yaml) a [docker-composer.\*.yaml](.ddev/docker-compose.environment.yaml)
 file is provided to add the environment variable `TYPO3_CONTEXT`. Read more about this
 feature in the [DDEV Documentation](https://ddev.readthedocs.io/en/stable/users/extend/custom-compose-files/).
 
